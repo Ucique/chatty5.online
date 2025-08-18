@@ -1,33 +1,41 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>UCIQUE — Healing Processes in a Distorted World</title>
-  <meta name="description" content="Ritual clothing, wearable wounds, sacred sarcasm. Art that bites back, poetry that mends with teeth. Spiritual gangstar: raw, eco, authentic." />
-  <meta name="keywords" content="Ucique, healing processes, ritual clothing, wearable wounds, sacred sarcasm, spiritual gangstar, eco apparel, organic streetwear, healing poetry, trauma art" />
+  <meta name="description" content="Ritual clothing, wearable wounds, sacred sarcasm. Art that bites back, poetry that mends with teeth." />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --font-display: 'Cinzel', serif;
-      --font-body: 'Inter', sans-serif;
-    }
-    body { margin: 0; font-family: var(--font-body); }
+    html,body,#root { height: 100%; }
+    body { background:#000; color:#fff; margin:0; }
   </style>
 </head>
-<body class="bg-black text-white">
-  <div id="root"></div>
-  <!-- Load the UciqueHome component file -->
-  <script type="text/babel" src="uciquestore_homepage.jsx"></script>
+<body>
+  <div id="root"><div style="padding:2rem;text-align:center">Loading…</div></div>
+
+  <!-- React + ReactDOM (UMD) -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <!-- Babel für JSX -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- JSX-Komponente -->
+  <script type="text/babel" data-presets="env,react" src="./uciquestore_homepage.jsx"></script>
+
+  <!-- Mount -->
   <script type="text/babel">
-    const rootElement = document.getElementById('root');
-    const root = ReactDOM.createRoot(rootElement);
-    // Render the UciqueHome component defined in the JSX file
-    root.render(<UciqueHome />);
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    if (window.UciqueHome) {
+      root.render(<UciqueHome />);
+    } else {
+      root.render(<div style={{padding:'2rem',textAlign:'center'}}>Component failed to load.</div>);
+    }
   </script>
+
+  <noscript>
+    <style>body{background:#111;color:#fff;font-family:system-ui,sans-serif}</style>
+    <div style="padding:2rem;text-align:center">Bitte JavaScript aktivieren – diese Seite benötigt JS.</div>
+  </noscript>
 </body>
 </html>
