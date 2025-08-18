@@ -387,4 +387,5 @@ const UciqueHome = () => {
   );
 };
 
-export default UciqueHome;
+// Global export for browser
+window.UciqueHome = UciqueHome;
