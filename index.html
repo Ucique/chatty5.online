@@ -25,11 +25,23 @@
 
   <!-- Mount -->
   <script type="text/babel">
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    if (window.UciqueHome) {
-      root.render(<UciqueHome />);
-    } else {
-      root.render(<div style={{padding:'2rem',textAlign:'center'}}>Component failed to load.</div>);
+    try {
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      if (window.UciqueHome) {
+        root.render(<UciqueHome />);
+      } else {
+        root.render(
+          <div style={{ padding: '2rem', textAlign: 'center' }}>
+            Component failed to load.
+          </div>
+        );
+      }
+    } catch (e) {
+      document.getElementById('root').innerHTML =
+        '<pre style="white-space:pre-wrap;padding:16px;color:#fff;background:#111">' +
+        (e && e.message ? e.message : String(e)) +
+        '</pre>';
+      console.error(e);
     }
   </script>
 
