@@ -44,18 +44,18 @@ const products = [
 const blogPosts = [
   {
     title: 'How to Heal Without Becoming a Liar',
-    excerpt: 'Healing isn’t pretty.  It’s messy, radical honesty and art that bites back…',
-    link: '#',
+    excerpt: 'Healing isn’t pretty. It’s messy, radical honesty and art that bites back.',
+    link: 'blog/heal-without-lies.html',
   },
   {
     title: 'Gifted & Gaslit',
-    excerpt: 'For the geniuses and misfits told to shrink, here’s a manifesto…',
-    link: '#',
+    excerpt: 'For the geniuses and misfits told to shrink, here’s a manifesto.',
+    link: 'blog/gifted-and-gaslit.html',
   },
   {
     title: 'Insane Stepmothers',
-    excerpt: 'A poetic grotesque memoir of masks, poison and ritual flowers…',
-    link: '#',
+    excerpt: 'A poetic grotesque memoir of masks, poison and ritual flowers.',
+lilink: 'blog/insane-stepmothers.html',
   },
 ];
 
@@ -350,7 +350,7 @@ const UciqueHome = () => {
         <p className="text-gray-300 mb-6" style={{ fontFamily: 'var(--font-body)' }}>
           Monthly rage, art and insight — straight to your soul.  No spam.  No bullshit.  No lightworker fluff.
         </p>
-        <form className="flex flex-col sm:flex-row gap-4 justify-center">
+<<form action="mailto:usicueme@gmail.com" className="flex flex-col sm:flex-row gap-4 justify-center">>
           <input
             type="email"
             required
