@@ -53,10 +53,11 @@ const blogPosts = [
     link: 'blog/gifted-and-gaslit.html',
   },
   {
-    title: 'Insane Stepmothers',
-    excerpt: 'A poetic grotesque memoir of masks, poison and ritual flowers.',
-lilink: 'blog/insane-stepmothers.html',
-  },
+         title: 'Insane Stepmothers',
+        excerpt: 'A poetic grotesque memoir of masks, poison and ritual flowers.',
+        link: 'blog/insane-stepmothers.html',
+      },
+
 ];
 
 // Define Helmet as a passthrough component since react-helmet is not available
