@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UCIQUE Forum | Healing & Discussion</title>
+  <meta name="description" content="Join the UCIQUE community forum. Explore topics on healing without lies, gifted & gaslit experiences, insane stepmothers and more. Share your stories, find support, and engage with fellow artists and seekers.">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;700&display=swap');
+    :root {
+      --font-display: 'Cinzel', serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    body {
+      background-color: #0f0f0f;
+      color: #f7f7f7;
+      font-family: var(--font-body);
+      line-height: 1.6;
+    }
+    .gradient {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      filter: blur(120px);
+      z-index: -1;
+    }
+    .gradient1 { background: radial-gradient(circle, rgba(255,99,132,0.4), transparent); top: -100px; left: -100px; }
+    .gradient2 { background: radial-gradient(circle, rgba(99,132,255,0.3), transparent); bottom: -150px; right: -150px; }
+    .container { max-width: 800px; margin: 0 auto; padding: 4rem 1rem; }
+    header a { font-family: var(--font-display); font-size: 1.5rem; text-decoration: none; color: #f7f7f7; }
+    h1 { font-family: var(--font-display); }
+    h2 { font-family: var(--font-display); font-size: 1.8rem; margin-top: 2rem; margin-bottom: 1rem; }
+    footer { text-align: center; padding: 2rem 0; font-size: 0.8rem; }
+    footer a { margin: 0 0.5rem; color: #ccc; text-decoration: underline; }
+    form { margin-top: 2rem; }
+    form input { border: 1px solid #555; padding: 0.5rem; margin-right: 0.5rem; background: #1f1f1f; color: #f7f7f7; }
+    form button { background: #e11d48; padding: 0.5rem 1rem; border: none; color: #fff; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="gradient gradient1"></div>
+  <div class="gradient gradient2"></div>
+  <header class="container">
+    <a href="/">UCIQUE</a>
+  </header>
+  <main class="container">
+    <h1 class="text-4xl font-bold mb-4">Forum</h1>
+    <p class="mb-6">Welcome to the UCIQUE forum. Here you can connect with other seekers, share your stories, and explore topics inspired by our blog. Each space invites gentle conversation and deep reflection.</p>
+    <section>
+      <h2>Healing Without Lies</h2>
+      <p>Discuss the journey of healing without compromising your truth. Share your experiences, the challenges of staying authentic in a world of facades, and the ways you express honesty through art and fashion.</p>
+    </section>
+    <section>
+      <h2>Gifted & Gaslit</h2>
+      <p>For the gifted ones who have been told to shrink: this space is for reclaiming your power. Talk about finding your voice, resisting gaslighting, and supporting fellow misfits on their paths.</p>
+    </section>
+    <section>
+      <h2>Insane Stepmothers</h2>
+      <p>Explore the archetype of the 'insane stepmother' and its reflections in modern life. How do we transform inherited fears into empathy and courage? Share your insights and hear from others.</p>
+    </section>
+    <section>
+      <h2>General Discussion</h2>
+      <p>Have something else on your mind? Start a new thread and let's explore together. This is a space for healing, creativity, and sustainable fashion insights.</p>
+    </section>
+    <section>
+      <h2>Subscribe for Updates</h2>
+      <p>Stay connected. Receive our latest blog posts, product launches, and forum highlights.</p>
+      <form action="mailto:usicueme@gmail.com" method="post" enctype="text/plain">
+        <input type="email" name="email" placeholder="your@email.com" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </section>
+  </main>
+  <footer>
+    <div class="mb-2">
+      <a href="https://instagram.com/uciquefashion" target="_blank">Instagram</a> |
+      <a href="https://tiktok.com/@uciquefashion" target="_blank">TikTok</a> |
+      <a href="https://github.com/Ucique" target="_blank">GitHub</a>
+    </div>
+    <p>&copy; <span id="year"></span> UCIQUE. All Rights Reserved.</p>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
