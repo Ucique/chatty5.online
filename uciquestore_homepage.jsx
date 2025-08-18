@@ -49,15 +49,14 @@ const blogPosts = [
   },
   {
     title: 'Gifted & Gaslit',
-    excerpt: 'For the geniuses and misfits told to shrink, here’s a manifesto.',
+    excerpt: 'For the geniuses and misfits told to shrink — here’s a manifesto.',
     link: 'blog/gifted-and-gaslit.html',
   },
   {
-         title: 'Insane Stepmothers',
-        excerpt: 'A poetic grotesque memoir of masks, poison and ritual flowers.',
-        link: 'blog/insane-stepmothers.html',
-      },
-
+    title: 'Insane Stepmothers',
+    excerpt: 'A poetic grotesque of masks, poison and ritual flowers — and how to reclaim it.',
+    link: 'blog/insane-stepmothers.html',
+  },
 ];
 
 // Define Helmet as a passthrough component since react-helmet is not available
@@ -122,7 +121,7 @@ const UciqueHome = () => {
         </div>
         <nav className="hidden md:flex gap-8 text-sm uppercase tracking-wide">
           <a href="#store" className="hover:text-emerald-400">Shop</a>
-          <a href="forum.html" className="hover:text-emerald-Forum</a>
+          <a href="forum.html" className="hover:text-emerald-400">Forum</a>
           <a href="#gallery" className="hover:text-emerald-400">Gallery</a>
           <a href="#blog" className="hover:text-emerald-400">Blog</a>
           <a href="#ethos" className="hover:text-emerald-400">Eco</a>
@@ -351,7 +350,7 @@ const UciqueHome = () => {
         <p className="text-gray-300 mb-6" style={{ fontFamily: 'var(--font-body)' }}>
           Monthly rage, art and insight — straight to your soul.  No spam.  No bullshit.  No lightworker fluff.
         </p>
-<<form action="mailto:usicueme@gmail.com" className="flex flex-col sm:flex-row gap-4 justify-center">>
+        <form action="mailto:usicueme@gmail.com" className="flex flex-col sm:flex-row gap-4 justify-center">
           <input
             type="email"
             required
