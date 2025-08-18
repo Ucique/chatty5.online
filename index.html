@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UCIQUE — Healing Processes in a Distorted World</title>
+  <meta name="description" content="Ritual clothing, wearable wounds, sacred sarcasm. Art that bites back, poetry that mends with teeth. Spiritual gangstar: raw, eco, authentic." />
+  <meta name="keywords" content="Ucique, healing processes, ritual clothing, wearable wounds, sacred sarcasm, spiritual gangstar, eco apparel, organic streetwear, healing poetry, trauma art" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --font-display: 'Cinzel', serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    body { margin: 0; font-family: var(--font-body); }
+  </style>
+</head>
+<body class="bg-black text-white">
+  <div id="root"></div>
+  <!-- Load the UciqueHome component file -->
+  <script type="text/babel" src="uciquestore_homepage.jsx"></script>
+  <script type="text/babel">
+    const rootElement = document.getElementById('root');
+    const root = ReactDOM.createRoot(rootElement);
+    // Render the UciqueHome component defined in the JSX file
+    root.render(<UciqueHome />);
+  </script>
+</body>
+</html>

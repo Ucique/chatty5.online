@@ -1,6 +1,3 @@
-import React from 'react';
-import { Helmet } from 'react-helmet';
-
 /*
  * UciqueHome – a complete homepage component for the Ucique project.
  *
@@ -61,6 +58,10 @@ const blogPosts = [
     link: '#',
   },
 ];
+
+// Define Helmet as a passthrough component since react-helmet is not available
+const Helmet = (props) => React.createElement(React.Fragment, null, props.children);
+
 
 const UciqueHome = () => {
   // Structured data for SEO (Organization & Website schema)
@@ -252,7 +253,7 @@ const UciqueHome = () => {
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: 'var(--font-display)' }}>Join the Community</h2>
             <p className="text-gray-300 leading-relaxed mb-6" style={{ fontFamily: 'var(--font-body)' }}>
-              This is not a safe space.  It’s a real space.  No filters.  No fixations.  No gods.  Just breath, breakage and becoming【974359430741537†L44-L49】.  Bring your story.  Bring your edges.  Leave the costume.
+              This is not a safe space.  It’s a real space.  No filters.  No fixations.  No gods.  Just breath, breakage and becoming.  Bring your story.  Bring your edges.  Leave the costume.
             </p>
             <a href="#" className="rounded-full px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white/90 font-semibold tracking-wider uppercase" style={{ fontFamily: 'var(--font-body)' }}>
               Join the Forum
