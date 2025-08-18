@@ -122,7 +122,7 @@ const UciqueHome = () => {
         </div>
         <nav className="hidden md:flex gap-8 text-sm uppercase tracking-wide">
           <a href="#store" className="hover:text-emerald-400">Shop</a>
-          <a href="#discussion" className="hover:text-emerald-400">Discussion</a>
+          <a href="forum.html" className="hover:text-emerald-Forum</a>
           <a href="#gallery" className="hover:text-emerald-400">Gallery</a>
           <a href="#blog" className="hover:text-emerald-400">Blog</a>
           <a href="#ethos" className="hover:text-emerald-400">Eco</a>
@@ -142,7 +142,7 @@ const UciqueHome = () => {
         </p>
         <div className="flex gap-4 flex-col sm:flex-row">
           <a
-            href="#discussion"
+            href="forum.html"
             className="px-8 py-3 rounded-full bg-emerald-500/80 hover:bg-emerald-400 text-black font-semibold uppercase tracking-wide"
           >
             Enter the Process
@@ -181,7 +181,7 @@ const UciqueHome = () => {
             <p className="text-gray-300 mb-4" style={{ fontFamily: 'var(--font-body)' }}>
               A forum for the burned and brilliant.  Talk trauma, intelligence, healing and madness.
             </p>
-            <a href="#discussion" className="inline-flex items-center gap-2 text-emerald-400 hover:underline uppercase text-sm font-semibold">
+            <a href="forum.html" className="inline-flex items-center gap-2 text-emerald-400 hover:underline uppercase text-sm font-semibold">
               Join the Forum
             </a>
           </div>
