@@ -1,0 +1,30 @@
+name: Setup giscus
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: write
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Write giscus partial with live IDs
+        env:
+          GH_PAT: ${{ secrets.CHATTY_KEY }}
+          GISCUS_CATEGORY: General
+        run: |
+          node tools/setup-giscus.mjs
+      - name: Inject giscus into pages
+        run: |
+          node tools/inject-giscus.mjs || true
+      - name: Commit changes
+        run: |
+          git config user.name  "Ucique Agent"
+          git config user.email "agent@ucique.com"
+          git add -A
+          git commit -m "feat(comments): add giscus" || echo "No changes"
+          git push
