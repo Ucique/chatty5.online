@@ -81,15 +81,13 @@ const UciqueHome = () => {
     <div className="relative overflow-x-hidden bg-black text-white font-sans">
       {/* SEO meta tags */}
       <Helmet>
-        <title>UCIQUE — Healing Processes in a Distorted World</title>
-        <meta
+<title>UCIQUE — Dark Healing Art & Apparel for Misfits and Survivors
+</title>        <meta
           name="description"
-          content="Ritual clothing, wearable wounds, sacred sarcasm. Art that bites back, poetry that mends with teeth. Spiritual gangstar: raw, eco, authentic."
-        />
+content="Ritual clothing, sacred sarcasm, and art that honors scars."        />
         <meta
           name="keywords"
-          content="Ucique, healing processes, ritual clothing, wearable wounds, sacred sarcasm, spiritual gangstar, eco apparel, organic streetwear, healing poetry, trauma art"
-        />
+content="Ucique, dark healing art, misfits, survivors, ritual clothing, sacred sarcasm, art, apparel, trauma art"        />
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}
         </script>
@@ -134,12 +132,12 @@ const UciqueHome = () => {
           className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-widest mb-4"
           style={{ fontFamily: 'var(--font-display)' }}
         >
-          HEALING PROCESSES
-        </h1>
-        <p className="max-w-3xl text-lg md:text-xl text-gray-300 mb-8" style={{ fontFamily: 'var(--font-body)' }}>
-          spiritual gangstar edition. I make art that bites back, poetry that mends with teeth.
-        </p>
-        <div className="flex gap-4 flex-col sm:flex-row">
+       Dark Healing Art & Apparel for Misfits and Survivors
+  </h1>
+  <p className="max-w-3xl text-lg md:text-xl text-gray-300 mb-8" style={{ fontFamily: 'var(--font-body)' }}>
+    Ritual clothing, sacred sarcasm, and art that honors scars.
+  </p>
+  <div className="flex gap-4 flex-col sm:flex-row">
           <a
             href="forum.html"
             className="px-8 py-3 rounded-full bg-emerald-500/80 hover:bg-emerald-400 text-black font-semibold uppercase tracking-wide"
