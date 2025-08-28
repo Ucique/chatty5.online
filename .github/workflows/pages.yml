@@ -21,7 +21,18 @@ jobs:
           cp -r * dist/ || true
           echo "ucique.com" > dist/CNAME
 
-      - name: Upload artifact
+ 
+            - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Build content and forum data
+        env:
+          GH_PAT: ${{ secrets.CHATTY_KEY }}
+        run: |
+          node tools/build-content.mjs
+          node tools/fetch-forum.mjs
+- name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
