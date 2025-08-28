@@ -1,0 +1,55 @@
+name: Deploy Pages
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Wenn später Build-Tool: hier npm ci && npm run build
+      - name: Prepare artifact
+        run: |
+          mkdir -p dist
+          cp -r * dist/ || true
+          echo "ucique.com" > dist/CNAME
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+
+  post:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set domain & enforce HTTPS
+        env:
+          OWNER: Ucique
+          REPO: chatty5.online
+          DOMAIN: ucique.com
+          GH_PAT: ${{ secrets.CHATTY_KEY }}
+        run: |
+          API="https://api.github.com/repos/${OWNER}/${REPO}/pages"
+          curl -fsSL -X PUT \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${GH_PAT}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            -d "{\"cname\":\"${DOMAIN}\",\"https_enforced\":true}" \
+            "${API}"
