@@ -139,20 +139,9 @@ content="Ucique, dark healing art, misfits, survivors, ritual clothing, sacred s
   Ritual clothing, sacred sarcasm, and art that honors scars.
   </p>
   <div className="flex gap-4 flex-col sm:flex-row">
-  <a href="forum.html">Forum</a>
-</div>
-           
-            className="px-8 py-3 rounded-full bg-emerald-500/80 hover:bg-emerald-400 text-black font-semibold uppercase tracking-wide"
-          >
-            Enter the Process
-          </a>
-          <a
-            href="#store"
-            className="px-8 py-3 rounded-full border border-emerald-500 text-emerald-400 hover:bg-emerald-500 hover:text-black font-semibold uppercase tracking-wide"
-          >
-            Visit the Store
-          </a>
-        </div>
+  <a    <a href="#process" className="px-8 py-3 bg-emerald-500 rounded-full text-black font-semibold uppercase tracking-wide">Enter the Process</a>
+    <a href="#store" className="px-8 py-3 border border-emerald-500 rounded-full text-emerald-400 font-semibold uppercase tracking-wide">Visit the Store</a>
+
       </section>
 
       {/* Three glass cards */}
