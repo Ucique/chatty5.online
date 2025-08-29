@@ -138,9 +138,10 @@ content="Ucique, dark healing art, misfits, survivors, ritual clothing, sacred s
           for Misfits and Survivors<br/>
   Ritual clothing, sacred sarcasm, and art that honors scars.
   </p>
-  <iv >className="flex gap-4 flex-col sm:flex-row">
-          <a
-            href="forum.html"
+  <div className="flex gap-4 flex-col sm:flex-row">
+  <a href="forum.html">Forum</a>
+</div>
+           
             className="px-8 py-3 rounded-full bg-emerald-500/80 hover:bg-emerald-400 text-black font-semibold uppercase tracking-wide"
           >
             Enter the Process
