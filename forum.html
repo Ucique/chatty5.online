@@ -1,74 +1,54 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>UCIQUE Forum</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>body{background:#000;color:#fff;margin:0}</style>
+<meta charset="utf-8">
+<title>Forum - UCIQUE</title>
+<script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <div id="root"></div>
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script type="text/babel">
-    function Forum() {
-      const params = new URLSearchParams(window.location.search);
-      const num = params.get('number');
-      const [posts,setPosts] = React.useState([]);
-      const [post,setPost] = React.useState(null);
-      React.useEffect(() => {
-        if (num) {
-          fetch('https://api.github.com/repos/Ucique/chatty5.online/discussions/' + num)
-            .then(r => r.json())
-            .then(setPost).catch(() => {});
-        } else {
-          fetch('https://api.github.com/repos/Ucique/chatty5.online/discussions')
-            .then(r => r.json())
-            .then(data => {
-              data.sort((a,b) => new Date(b.updated_at) - new Date(a.updated_at));
-              setPosts(data);
-            }).catch(() => {});
-        }
-      }, [num]);
-      React.useEffect(() => {
-        if (num) {
-          const d = document.getElementById('giscus');
-          if (d) d.innerHTML = '';
-          const s=document.createElement('script');
-          s.src='https://giscus.app/client.js';
-          s.setAttribute('data-repo','Ucique/chatty5.online');
-          s.setAttribute('data-repo-id','R_kgDOPfkH8A');
-          s.setAttribute('data-category','General');
-          s.setAttribute('data-category-id','DIC_kwDOPfkH8M4CuWyT');
-          s.setAttribute('data-mapping','specific');
-          s.setAttribute('data-term',num);
-          s.setAttribute('data-theme','dark');
-          s.setAttribute('data-reactions-enabled','1');
-          s.setAttribute('crossorigin','anonymous');
-          s.async=true;
-          document.getElementById('giscus').appendChild(s);
-        }
-      }, [num]);
-      if (num) {
-        return <div className="max-w-4xl mx-auto px-4 py-8">
-          <a href="forum.html" className="text-sm text-emerald-400">\u2190 Back to Forum</a>
-          <h1 className="text-3xl font-bold mt-4 mb-2">{post ? post.title : 'Loading'}</h1>
-          <p className="mb-6 whitespace-pre-wrap text-gray-300">{post ? post.body : ''}</p>
-          <div id="giscus"></div>
-        </div>;
-      }
-4 py-8">
-        <h1 className="text-4xl font-bold mb-6">Forum Topics</h1>
-        {posts.map(p => <a key={p.number} href={'forum.html?number=' + p.number} className="block p-4 mb-4 border border-white/20 rounded hover:bg-white/10">
-          <h2 className="text-xl font-semibold mb-1">{p.title}</h2>
-          <p className="text-gray-400 text-sm">{p.body ? p.body.substring(0, 120) + '…' : ''}</p>
-          <p className="text-gray-600 text-xs mt-1">{p.comments} comments</p>
-        </a>)}
-      </div>;
-    }
-    ReactDOM.createRoot(document.getElementById('root')).render(<Forum />);
-  </script>
+<body class="bg-black text-white min-h-screen">
+<div class="max-w-3xl mx-auto py-8 px-4">
+<h1 class="text-3xl mb-4">Forum</h1>
+<div id="forum"></div>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+  const params = new URLSearchParams(window.location.search);
+  const discussionId = params.get("discussion");
+  const forum = document.getElementById("forum");
+  if (discussionId) {
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.setAttribute("data-repo", "Ucique/chatty5.online");
+    script.setAttribute("data-repo-id", "R_kgDOPfkH8A");
+    script.setAttribute("data-category", "General");
+    script.setAttribute("data-category-id", "DIC_kwDOPfkH8M4CuWyT");
+    script.setAttribute("data-mapping", "specific");
+    script.setAttribute("data-strict", "1");
+    script.setAttribute("data-reactions-enabled", "1");
+    script.setAttribute("data-emit-metadata", "0");
+    script.setAttribute("data-input-position", "bottom");
+    script.setAttribute("data-theme", "dark");
+    script.setAttribute("data-discussion-id", discussionId);
+    script.setAttribute("crossorigin", "anonymous");
+    script.setAttribute("async", "");
+    forum.appendChild(script);
+  } else {
+    const resp = await fetch("https://api.github.com/repos/Ucique/chatty5.online/discussions");
+    const discussions = await resp.json();
+    const list = document.createElement("ul");
+    list.className = "space-y-4";
+    discussions.forEach(d => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = "forum.html?discussion=" + d.node_id;
+      a.textContent = d.title + " (" + d.comments + " comments)";
+      a.className = "text-blue-400 underline";
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+    forum.appendChild(list);
+  }
+});
+</script>
 </body>
-</html>      return <div className="max-w-4xl mx-auto px-
+</html>
