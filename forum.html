@@ -1,61 +1,54 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Ucique Forum – Topics</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="General discussion forum for healing, creativity, and sustainable fashion insights. Join topics like Healing Without Lies, Gifted & Gaslit, and Insane Stepmothers." />
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<meta charset="utf-8">
+<title>Forum - UCIQUE</title>
+<script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-black text-gray-100">
-  <header class="max-w-3xl mx-auto px-4 py-10">
-    <a href="/" class="text-sm text-gray-400 hover:text-gray-200">&larr; Back to Home</a>
-    <h1 class="text-4xl font-bold mt-4">Forum Topics</h1>
-    <p class="mt-2 text-gray-300">Click a topic to open the full discussion and add comments.</p>
-  </header>
-
-  <main class="max-w-3xl mx-auto px-4 space-y-6 pb-24">
-    <a class="block p-5 bg-gray-900 rounded-xl hover:bg-gray-800 transition"
-       href="/forum/general-discussion.html">
-      <h2 class="text-2xl font-semibold">General Discussion</h2>
-      <p class="text-gray-400">Open threads for healing, creativity, sustainable fashion insights.</p>
-    </a>
-
-    <a class="block p-5 bg-gray-900 rounded-xl hover:bg-gray-800 transition"
-       href="/forum/healing-without-lies.html">
-      <h2 class="text-2xl font-semibold">Healing Without Lies</h2>
-      <p class="text-gray-400">Turning scars into art without spiritual bypassing. Join the discussion.</p>
-    </a>
-
-    <a class="block p-5 bg-gray-900 rounded-xl hover:bg-gray-800 transition"
-       href="/forum/gifted-and-gaslit.html">
-      <h2 class="text-2xl font-semibold">Gifted &amp; Gaslit</h2>
-      <p class="text-gray-400">For the gifted who were told to shrink. Reclaim your voice here.</p>
-    </a>
-
-    <a class="block p-5 bg-gray-900 rounded-xl hover:bg-gray-800 transition"
-       href="/forum/insane-stepmothers.html">
-      <h2 class="text-2xl font-semibold">Insane Stepmothers</h2>
-      <p class="text-gray-400">The archetype of jealousy in modern life. Transform poison into courage.</p>
-    </a>
-  </main>
-<!-- Comments (giscus) -->
-<section id="comments" class="mt-16">
-  <script src="https://giscus.app/client.js"
-    data-repo="Ucique/chatty5.online"
-    data-repo-id="R_kgDOPfkH8A"
-    data-category="General"
-    data-category-id="DIC_kwDOPfkH8M4CuWyT"
-    data-mapping="pathname"
-    data-strict="1"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="bottom"
-    data-theme="dark"
-    crossorigin="anonymous"
-    async>
-  </script>
-  <noscript>Enable JavaScript to view comments by giscus.</noscript>
-</section>
+<body class="bg-black text-white min-h-screen">
+<div class="max-w-3xl mx-auto py-8 px-4">
+<h1 class="text-3xl mb-4">Forum</h1>
+<div id="forum"></div>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+  const params = new URLSearchParams(window.location.search);
+  const discussionId = params.get("discussion");
+  const forum = document.getElementById("forum");
+  if (discussionId) {
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.setAttribute("data-repo", "Ucique/chatty5.online");
+    script.setAttribute("data-repo-id", "R_kgDOPfkH8A");
+    script.setAttribute("data-category", "General");
+    script.setAttribute("data-category-id", "DIC_kwDOPfkH8M4CuWyT");
+    script.setAttribute("data-mapping", "specific");
+    script.setAttribute("data-strict", "1");
+    script.setAttribute("data-reactions-enabled", "1");
+    script.setAttribute("data-emit-metadata", "0");
+    script.setAttribute("data-input-position", "bottom");
+    script.setAttribute("data-theme", "dark");
+    script.setAttribute("data-discussion-id", discussionId);
+    script.setAttribute("crossorigin", "anonymous");
+    script.setAttribute("async", "");
+    forum.appendChild(script);
+  } else {
+    const resp = await fetch("https://api.github.com/repos/Ucique/chatty5.online/discussions");
+    const discussions = await resp.json();
+    const list = document.createElement("ul");
+    list.className = "space-y-4";
+    discussions.forEach(d => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = "forum.html?discussion=" + d.node_id;
+      a.textContent = d.title + " (" + d.comments + " comments)";
+      a.className = "text-blue-400 underline";
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+    forum.appendChild(list);
+  }
+});
+</script>
 </body>
 </html>

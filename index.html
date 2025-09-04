@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>UCIQUE — Dark Healing Art & Apparel for Misfits and Survivors</title>
   <meta name="description" content="Ritual clothing, sacred sarcasm, and art that honors scars." />
+  <!-- Tailwind for quick styling -->
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     html,body,#root { height: 100%; }
@@ -14,16 +15,16 @@
 <body>
   <div id="root"><div style="padding:2rem;text-align:center">Loading…</div></div>
 
-  <!-- React + ReactDOM (UMD) -->
+  <!-- React + ReactDOM (UMD builds) -->
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <!-- Babel für JSX -->
+  <!-- Babel for in ‑browser JSX compilation -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-  <!-- JSX-Komponente -->
+  <!-- Our JSX component -->
   <script type="text/babel" data-presets="env,react" src="./uciquestore_homepage.jsx"></script>
 
-  <!-- Mount -->
+  <!-- Mount the component -->
   <script type="text/babel">
     try {
       const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -47,25 +48,25 @@
 
   <noscript>
     <style>body{background:#111;color:#fff;font-family:system-ui,sans-serif}</style>
-    <div style="padding:2rem;text-align:center">Bitte JavaScript aktivieren – diese Seite benötigt JS.</div>
+    <div style="padding:2rem;text-align:center">Please enable JavaScript – this page requires JS.</div>
   </noscript>
-<!-- Comments (giscus) -->
-<section id="comments" class="mt-16">
-  <script src="https://giscus.app/client.js"
-    data-repo="Ucique/chatty5.online"
-    data-repo-id="R_kgDOPfkH8A"
-    data-category="General"
-    data-category-id="DIC_kwDOPfkH8M4CuWyT"
-    data-mapping="pathname"
-    data-strict="1"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="bottom"
-    data-theme="dark"
-    crossorigin="anonymous"
-    async>
-  </script>
-  <noscript>Enable JavaScript to view comments by giscus.</noscript>
-</section>
+  <!-- Comments (giscus) on the homepage.  The mapping is based on pathname so each page can have its own discussion. -->
+  <section id="comments" class="mt-16">
+    <script src="https://giscus.app/client.js"
+      data-repo="Ucique/chatty5.online"
+      data-repo-id="R_kgDOPfkH8A"
+      data-category="General"
+      data-category-id="DIC_kwDOPfkH8M4CuWyT"
+      data-mapping="pathname"
+      data-strict="1"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="bottom"
+      data-theme="dark"
+      crossorigin="anonymous"
+      async>
+    </script>
+    <noscript>Enable JavaScript to view comments by giscus.</noscript>
+  </section>
 </body>
 </html>

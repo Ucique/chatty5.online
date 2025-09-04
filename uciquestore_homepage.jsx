@@ -1,4 +1,4 @@
-export default function UciqueHome() {
+function UciqueHome() {
   const products = [
     { name: "Signal: 3·6·9 Spiral Tee", subtitle: "Eco / organic cotton", price: "€29" },
     { name: "Ritual Scar Hoodie", subtitle: "Organic / recycled", price: "€59" },
@@ -13,6 +13,19 @@ export default function UciqueHome() {
     { title: "Gifted & Gaslit", excerpt: "For the geniuses and misfits told to shrink — here’s a manifesto.", link: "#" },
     { title: "Insane Stepmothers", excerpt: "A poetic grotesque of masks, poison and ritual flowers — and how to reclaim it.", link: "#" },
   ];
+
+  // Forum state
+  const [discussions, setDiscussions] = React.useState([]);
+  React.useEffect(() => {
+    fetch('https://api.github.com/repos/Ucique/chatty5.online/discussions')
+      .then(res => res.json())
+      .then(data => {
+        // sort by most recent
+        const sorted = data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+        setDiscussions(sorted);
+      })
+      .catch(() => setDiscussions([]));
+  }, []);
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -32,7 +45,7 @@ export default function UciqueHome() {
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 -z-10 bg-gradient-to-br from-gray-900 via-black to-gray-950" />
-        <div className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_top_left,_rgba(16,185,129,0.20),_transparent),radial-gradient(ellipse_at_bottom_right,_rgba(59,130,246,0.15),_transparent)]" style={{backgroundBlendMode:'screen'}} />
+        <div className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_top_left,_rgba(16,185,129,0.20),_transparent),radial-gradient(ellipse_at_bottom_right,_rgba(59,130,246,0.15),_transparent)]" style={{ backgroundBlendMode: 'screen' }} />
         <div className="max-w-6xl mx-auto px-6 pt-28 pb-36 text-center">
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-widest">Dark Healing Art & Apparel</h1>
           <p className="max-w-3xl mx-auto mt-4 text-lg md:text-xl text-white/80">
@@ -50,7 +63,7 @@ export default function UciqueHome() {
         <Card title="Art & Apparel" tag="Ritual clothing" linkText="Visit the Store" href="#store">
           Ritual clothing, wearable wounds, sacred sarcasm. Shop prints, clothing and objects made to vibrate.
         </Card>
-        <Card title="Discussion" tag="Unpolished forum" linkText="Join the Forum" href="#">
+        <Card title="Discussion" tag="Unpolished forum" linkText="Join the Forum" href="#forum">
           A forum for the burned and brilliant. Talk trauma, intelligence, healing and madness.
         </Card>
         <Card title="Artwork" tag="Visual stories" linkText="Enter Gallery" href="#gallery">
@@ -92,54 +105,44 @@ export default function UciqueHome() {
         </div>
       </section>
 
-      {/* Discussion CTA */}
-      <section id="discussion" className="max-w-6xl mx-auto px-6 py-16">
-        <div className="grid lg:grid-cols-2 gap-10 items-center">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Join the Community</h2>
-            <p className="text-white/80 leading-relaxed mb-6">
-              This is not a safe space. It’s a real space. No filters. No fixations. No gods. Just breath, breakage and becoming. Bring your story. Bring your edges. Leave the costume.
-            </p>
-            <a href="#" className="rounded-full px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white/90 font-semibold tracking-wider uppercase">Join the Forum</a>
-          </div>
-          <div className="rounded-2xl border border-white/15 bg-white/10 backdrop-blur-md p-6">
-            <div className="text-xs uppercase tracking-widest text-gray-400">House Rules</div>
-            <ul className="mt-3 space-y-2 text-gray-200 text-sm">
-              <li>• Radical honesty. No spiritual bypassing.</li>
-              <li>• No saviour‑complex. Offer experience, not prescriptions.</li>
-              <li>• Respect boundaries. No voyeurism, no harassment.</li>
-              <li>• Art welcome. Mess welcome. Sales okay in #show‑your‑work.</li>
-            </ul>
-          </div>
+      {/* Forum Preview */}
+      <section id="forum" className="max-w-6xl mx-auto px-6 py-16">
+        <div className="flex items-end justify-between mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold">Forum</h2>
+          <a href="forum.html" className="text-sm uppercase tracking-widest text-emerald-400 hover:text-emerald-300">View All →</a>
         </div>
-      </section>
-
-      {/* Gallery */}
-      <section id="gallery" className="max-w-6xl mx-auto px-6 py-16">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">Artwork</h2>
-        <p className="text-white/80 max-w-3xl mb-8">Visual stories, poetic fragments, distorted beauty. A gallery of frequencies, ghosts and truths.</p>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="aspect-[4/3] rounded-2xl overflow-hidden border border-white/15 bg-gradient-to-br from-emerald-700/20 via-blue-700/20 to-purple-700/20 flex items-center justify-center hover:-translate-y-1 transition-all duration-300">
-              <span className="text-gray-400">Artwork {i + 1}</span>
-            </div>
-          ))}
-        </div>
+        {discussions.length > 0 ? (
+          <div className="grid sm:grid-cols-1 gap-6">
+            {discussions.slice(0, 5).map((disc) => (
+              <div key={disc.node_id} className="border border-white/15 rounded-2xl p-4 bg-white/5 hover:bg-white/10 transition">
+                <h3 className="text-xl font-semibold mb-2">
+                  <a href={`forum.html?node=${encodeURIComponent(disc.node_id)}`} className="text-emerald-400 hover:underline">
+                    {disc.title}
+                  </a>
+                </h3>
+                <p className="text-gray-400 text-sm">{disc.body ? disc.body.substring(0, 180) + '…' : ''}</p>
+                <p className="text-gray-600 text-xs mt-1">{disc.comments} comment{disc.comments === 1 ? '' : 's'}</p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="text-gray-400">No discussions yet.</p>
+        )}
       </section>
 
       {/* Blog */}
       <section id="blog" className="max-w-6xl mx-auto px-6 py-16">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">Latest from the Blog</h2>
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="flex items-end justify-between mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold">Latest from the Blog</h2>
+          <a href="#" className="text-sm uppercase tracking-widest text-emerald-400 hover:text-emerald-300">All Posts →</a>
+        </div>
+        <div className="grid sm:grid-cols-1 gap-6">
           {blogPosts.map((post, idx) => (
-            <a key={idx} href={post.link} className="block rounded-2xl border border-white/15 bg-white/10 backdrop-blur-md p-6 hover:-translate-y-1 transition-all duration-300">
-              <div className="text-xl font-semibold mb-2">{post.title}</div>
-              <p className="text-white/80 text-sm leading-relaxed mb-4">{post.excerpt}</p>
-              <div className="inline-flex items-center gap-2 text-emerald-400 font-semibold tracking-wide">
-                Read More
-                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
-              </div>
-            </a>
+            <div key={idx} className="border border-white/15 rounded-2xl p-4 bg-white/5 hover:bg-white/10 transition">
+              <h3 className="text-xl font-semibold mb-2">{post.title}</h3>
+              <p className="text-gray-400 text-sm mb-2">{post.excerpt}</p>
+              <a href={post.link} className="text-emerald-400 hover:underline text-sm uppercase">Read More</a>
+            </div>
           ))}
         </div>
       </section>
@@ -174,9 +177,9 @@ export default function UciqueHome() {
       <section id="subscribe" className="max-w-6xl mx-auto px-6 py-16 text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">Subscribe — Healing Poetry & Releases</h2>
         <p className="text-white/80 mb-6">Monthly rage, art and insight — straight to your soul. No spam. No bullshit. No lightworker fluff.</p>
-        <form className="flex flex-col sm:flex-row gap-4 justify-center">
+        <form className="flex flex-col sm:flex-row gap-4 justify-center" onSubmit={(e) => { e.preventDefault(); window.location.href = 'mailto:uciqueme@gmail.com?subject=Subscribe'; }}>
           <input type="email" placeholder="your@email.com" className="w-full sm:w-80 rounded-full bg-white/10 border border-white/20 px-5 py-3 outline-none placeholder:text-gray-400" />
-          <button type="button" className="rounded-full px-6 py-3 bg-emerald-500/90 hover:bg-emerald-400 text-black font-bold tracking-wider uppercase">Subscribe</button>
+          <button type="submit" className="rounded-full px-6 py-3 bg-emerald-500/90 hover:bg-emerald-400 text-black font-bold tracking-wider uppercase">Subscribe</button>
         </form>
       </section>
 
@@ -185,10 +188,11 @@ export default function UciqueHome() {
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div>© {new Date().getFullYear()} UCIQUE — Healing Processes</div>
           <nav className="flex flex-wrap gap-6">
-            <a href="#" className="hover:text-white">Contact</a>
+            <a href="mailto:uciqueme@gmail.com" className="hover:text-white">Contact</a>
             <a href="#" className="hover:text-white">Privacy</a>
-            <a href="#" className="hover:text-white">Instagram</a>
-            <a href="#" className="hover:text-white">TikTok</a>
+            <a href="https://www.facebook.com/profile.php?id=61572832235659" target="_blank" rel="noopener noreferrer" className="hover:text-white">Facebook</a>
+            <a href="https://www.instagram.com/uciqueme/" target="_blank" rel="noopener noreferrer" className="hover:text-white">Instagram</a>
+            <a href="https://www.tiktok.com/@ucique_" target="_blank" rel="noopener noreferrer" className="hover:text-white">TikTok</a>
           </nav>
         </div>
         <p className="mt-4 text-center text-xs text-gray-500">Ritual clothing, wearable wounds, sacred sarcasm. Healing processes in a distorted world.</p>
@@ -209,3 +213,7 @@ function Card({ title, tag, children, linkText, href }) {
     </div>
   );
 }
+
+// Expose components on window for mounting in index.html
+window.UciqueHome = UciqueHome;
+window.Card = Card;
