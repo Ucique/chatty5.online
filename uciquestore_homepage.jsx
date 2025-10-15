@@ -63,7 +63,7 @@ function UciqueHome() {
         <Card title="Art & Apparel" tag="Ritual clothing" linkText="Visit the Store" href="#store">
           Ritual clothing, wearable wounds, sacred sarcasm. Shop prints, clothing and objects made to vibrate.
         </Card>
-        <Card title="Discussion" tag="Unpolished forum" linkText="Join the Forum" href="#forum">
+        <Card title="Discussion" tag="Unpolished forum" linkText="Join the /forum/
           A forum for the burned and brilliant. Talk trauma, intelligence, healing and madness.
         </Card>
         <Card title="Artwork" tag="Visual stories" linkText="Enter Gallery" href="#gallery">
